@@ -1,0 +1,46 @@
+{
+  "name": "detemiro-api-workspace",
+  "packageManager": "yarn@4.9.1",
+  "author": "Dmitry Ruban",
+  "license": "MIT",
+  "version": "2.0.0",
+  "private": true,
+  "repository": "https://github.com/RuBAN-GT/detemiro-api-blueprint",
+  "workspaces": [
+    "apps/*",
+    "libs/*"
+  ],
+  "scripts": {
+    "lint": "yarn workspaces foreach --all run lint",
+    "build": "yarn workspaces foreach --all --topological run build",
+    "heroku-postbuild": "yarn build && yarn workspaces focus --all --production",
+    "release": "yarn workspaces foreach --all run release",
+    "postinstall": "husky || true",
+    "prepack": "pinst --disable",
+    "postpack": "pinst --enable"
+  },
+  "devDependencies": {
+    "@commitlint/cli": "18.6.1",
+    "@commitlint/config-conventional": "18.6.3",
+    "@commitlint/types": "18.6.1",
+    "@eslint/js": "^9.39.3",
+    "@innocells/branch-naming-check": "^1.0.0",
+    "commitlint-plugin-regex-match": "^1.2.4",
+    "detemiro-logger-nestjs": "^2.5.0",
+    "eslint": "^9.39.3",
+    "eslint-config-detemiro": "^2.1.0",
+    "eslint-config-prettier": "^9.1.2",
+    "eslint-plugin-import": "^2.32.0",
+    "eslint-plugin-prettier": "^5.5.5",
+    "eslint-plugin-project-structure": "^3.14.2",
+    "eslint-plugin-simple-import-sort": "^12.1.1",
+    "globals": "^15.15.0",
+    "husky": "^9.1.7",
+    "lint-staged": "^15.5.2",
+    "pinst": "^3.0.0",
+    "prettier": "^3.8.1",
+    "ts-node": "^10.9.2",
+    "typescript": "~5.2.2",
+    "typescript-eslint": "^8.10.0"
+  }
+}

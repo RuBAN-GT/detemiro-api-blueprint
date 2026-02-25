@@ -1,0 +1,7 @@
+### Health check
+GET http://localhost:3000/healthz
+Content-Type: application/json
+
+### Ready check
+GET http://localhost:3000/readyz
+Content-Type: application/json

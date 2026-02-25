@@ -1,0 +1,41 @@
+{
+  "name": "detemiro-api-db-adapter",
+  "version": "1.0.0",
+  "private": true,
+  "main": "dist/src/index.js",
+  "types": "src/index.ts",
+  "author": "Dmitry Ruban",
+  "repository": "https://github.com/RuBAN-GT/detemiro-api-blueprint",
+  "prisma": {
+    "seed": "node ./dist/prisma/seed.js"
+  },
+  "scripts": {
+    "db:prisma": "prisma",
+    "db:status": "prisma migrate status",
+    "db:generate": "prisma migrate dev --create-only",
+    "db:seed": "prisma db seed",
+    "db:apply": "prisma migrate deploy",
+    "db:reset": "prisma migrate reset",
+    "db:migrate": "yarn build:prisma && yarn db:apply && yarn db:seed",
+    "build:lib": "tsup",
+    "build:prisma": "prisma generate --schema ./prisma/schema.prisma",
+    "build": "yarn build:prisma && tsc --declaration && yarn build:lib",
+    "release": "yarn build && yarn db:migrate"
+  },
+  "dependencies": {
+    "@prisma/adapter-pg": "^7.4.1",
+    "@prisma/client": "7.4.1",
+    "detemiro-logger": "^2.5.0",
+    "detemiro-logger-node": "^2.5.0",
+    "pg": "^8.16.3",
+    "prisma": "^7.4.1"
+  },
+  "devDependencies": {
+    "@microsoft/api-extractor": "^7.57.5",
+    "@types/node": "^20.19.33",
+    "esbuild-plugin-copy": "^2.1.1",
+    "ts-node": "^10.9.2",
+    "tsup": "^8.3.6",
+    "typescript": "^5.3.3"
+  }
+}

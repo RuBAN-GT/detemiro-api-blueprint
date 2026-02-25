@@ -1,0 +1,49 @@
+{
+  "name": "Detemiro API",
+  "description": "A simple API worker.",
+  "keywords": ["api", "detemiro"],
+  "addons": [],
+  "repository": "https://github.com/RuBAN-GT/detemiro-api-blueprint",
+  "buildpacks": [
+    {
+      "url": "https://github.com/RuBAN-GT/heroku-buildpack-yarn.git"
+    },
+    {
+      "url": "heroku/nodejs"
+    }
+  ],
+  "env": {
+    "APP__USE_WORKER": {
+      "description": "Enable worker mode for CQRS proxy integration",
+      "value": "true"
+    },
+    "APP__NAME": {
+      "description": "Application name used by logger",
+      "value": "detemiro-api-action-manager"
+    },
+    "DATABASE__URL": {
+      "description": "PostgreSQL connection URL",
+      "required": true
+    },
+    "REDIS__HOST": {
+      "description": "Redis host",
+      "value": "localhost"
+    },
+    "REDIS__PORT": {
+      "description": "Redis port",
+      "value": "6379"
+    },
+    "RABBIT__URL": {
+      "description": "RabbitMQ connection URL",
+      "value": "amqp://rabbitmq:rabbitmq@localhost:5672"
+    },
+    "RABBIT__QUEUE": {
+      "description": "RabbitMQ queue name",
+      "value": "detemiro-api-listener"
+    },
+    "YARN2_SKIP_PRUNING": {
+      "description": "Skip deprecated Heroku  pruning",
+      "value": "true"
+    }
+  }
+}
