@@ -2,7 +2,7 @@
 
 This guide describes a practical backend architecture for Nest.js and, more generally, TypeScript/Node.js services.
 
-The approach mixes modular design, CQRS, and hexagonal ideas while keeping the structure simple for teams.
+The approach mixes modular design and CQRS while keeping the structure simple for teams.
 
 ## High-Level Structure
 
@@ -54,20 +54,6 @@ Types and domain definitions for the current module.
   - `types`
   - `models` (DTOs)
 
-### `ports`
-
-Abstractions for external systems (APIs/services outside the application boundary).
-
-- Naming: `[feature].port.ts` (example: `idp.port.ts`).
-- For Nest DI, abstract classes are acceptable.
-
-### `adapters`
-
-Implementations of ports.
-
-- Group by port and implementation.
-- Naming: `[implementation].adapter.ts` (example: `keycloak-idp.adapter.ts`).
-
 ### `converters`
 
 Mapping/transformation layer between models.
@@ -95,6 +81,5 @@ Local helper functions/utilities for the module.
 ## General Rules
 
 - Every directory should expose a barrel file (`index.ts`) with entities intended for the upper layer.
-- Use `ports/adapters` when integrating external APIs.
 - If multiple features depend on the same external integration abstraction, extract it into a dedicated feature.
 - Compose multiple features through `application`, not through direct feature-to-feature coupling.
