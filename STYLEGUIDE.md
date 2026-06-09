@@ -81,5 +81,5 @@ Local helper functions/utilities for the module.
 ## General Rules
 
 - Every directory should expose a barrel file (`index.ts`) with entities intended for the upper layer.
-- If multiple features depend on the same external integration abstraction, extract it into a dedicated feature.
+- If multiple features depend on the same shared integration logic, extract it into a dedicated feature.
 - Compose multiple features through `application`, not through direct feature-to-feature coupling.
