@@ -1,4 +1,8 @@
-FROM node:23-alpine
+FROM node:22-bookworm-slim
+
+RUN apt-get update -y \
+  && apt-get install -y --no-install-recommends openssl \
+  && rm -rf /var/lib/apt/lists/*
 
 ARG APP_MODE=api
 ENV NODE_ENV=production
@@ -15,11 +19,13 @@ COPY tsconfig.json /workspace/
 
 # Monorepo projects
 COPY apps/action-manager /workspace/apps/action-manager
+COPY libs/db-adapter /workspace/libs/db-adapter
 
 # Build
 RUN corepack enable
-RUN yarn install
+RUN yarn install --immutable
 
+RUN yarn workspace detemiro-api-db-adapter build
 RUN yarn workspace detemiro-api-action-manager build
 
 RUN yarn workspaces focus --all --production

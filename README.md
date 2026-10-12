@@ -35,6 +35,10 @@ yarn workspace detemiro-api-action-manager api:prod
 - `yarn lint` - run lints in all workspaces.
 - `yarn build` - build all workspaces in topological order.
 
+The `node-gyp` `latest` dependency used by `fsevents` is pinned to 12.4.0 for
+local development on Node.js 22.15.0; newer releases require a newer Node.js 22
+patch. Production containers use the current Node.js 22 LTS image.
+
 ## Contributing
 
 I welcome contributions! Follow these steps to contribute:
